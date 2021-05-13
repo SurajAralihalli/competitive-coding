@@ -10,10 +10,21 @@ int main()
     {
         vec[i] = i;
     }
+    cout << "###########" << endl;
+
+    for(auto &i : vec)
+    {
+        cout << i << endl;
+        i = 9;
+    }
+
     for(auto i : vec)
     {
         cout << i << endl;
     }
+
+    cout << "&&&&&&&&&&&&&" << endl;
+
 
     for(auto i = vec.begin();i!=vec.end();i++)
     {
