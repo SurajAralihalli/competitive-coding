@@ -1,7 +1,7 @@
 // Author: Suraj Aralihalli
 // Url: https://leetcode.com/problems/two-sum/
 // Date: 7th May, 2021
-
+// Tags: sort
 
 #include <bits/stdc++.h>
 using namespace std;

@@ -1,7 +1,7 @@
 // Author: Suraj Aralihalli
 // Url: https://leetcode.com/problems/longest-palindromic-substring/
 // Date: 10th May, 2021
-
+// Tags: DP
 
 class Solution {
 public:

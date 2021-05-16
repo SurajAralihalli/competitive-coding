@@ -1,6 +1,7 @@
 // Author: Suraj Aralihalli
 // Url: https://leetcode.com/problems/container-with-most-water/
 // Date: 15th May, 2021
+// Tags: two pointers
 
 class Solution {
 public:

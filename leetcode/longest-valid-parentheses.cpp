@@ -1,6 +1,7 @@
 // Author: Suraj Aralihalli
 // Url: https://leetcode.com/problems/longest-valid-parentheses/
 // Date: 13th May, 2021
+// Tags: stack, DP
 
 class Solution {
 public:
