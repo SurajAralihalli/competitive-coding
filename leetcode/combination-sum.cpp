@@ -1,10 +1,7 @@
 // Author: Suraj Aralihalli
 // Url: https://leetcode.com/problems/combination-sum/
 // Date: 31th May, 2021
-// Tags: backtracking
-
-
-
+// Tags: backtracking, recursion
 
 class Solution {
 public:
@@ -41,6 +38,10 @@ public:
                 local_vec.assign(vec.begin(),vec.end());
                 local_vec.push_back(candidates[i]);
                 help(candidates, matrix, local_vec, sum-candidates[i],i);
+            }
+            else
+            {
+                break;
             }
             
             
