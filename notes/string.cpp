@@ -7,6 +7,11 @@ int main()
     s1.erase(0,1);
     cout << s1 << endl;
 
+    s1 = "abcdefghijklmnop";
+    s1.erase(7);
+    cout << s1 << endl;
+
+
     string s2 = "efgh";
     string s3;
     s3.assign(s2.begin()+4,s2.end());
@@ -14,5 +19,9 @@ int main()
 
     string s4(3,'y');
     cout << s4 << endl;
+
+    string s5 = "abcdefghijklmnop";
+    cout << s5.substr(1,4) << endl;
+    cout << s5.substr(1) << endl;
     return 0;
 }
