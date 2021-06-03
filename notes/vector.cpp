@@ -33,4 +33,13 @@ int main()
 
     cout << "@@@@@@@@@@@@@@@@" << endl;
     cout << (find(vec.begin(),vec.end(),1)!=vec.end()) << endl;
+
+    cout << "SAMPLE" << endl;
+    vector<int> sample = {1,2,3,4,5,6};
+    
+    cout << sample.front() << endl;
+    cout << sample.back() << endl;
+    sample.insert(sample.begin()+1,0);
+    cout << sample[1] << endl;
+
 }
