@@ -23,5 +23,24 @@ int main()
     string s5 = "abcdefghijklmnop";
     cout << s5.substr(1,4) << endl;
     cout << s5.substr(1) << endl;
+
+
+    string a = "12345";
+    
+    vector<int> vec = {1,2,3,4,5,6,7};
+    
+    int w = int(a.end()==find(a.begin(),a.end(),'2'));
+    
+    a.find("34");
+    cout << int(a.npos == a.find("@@")) << endl; // else returns index
+    
+    string c = a.substr(0,2);
+    
+    cout << c << endl;
+    
+    int e = stoi(a);
+    cout << e << endl;
+    
+    cout << to_string(e) << endl;
     return 0;
 }

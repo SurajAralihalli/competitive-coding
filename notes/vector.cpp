@@ -42,4 +42,11 @@ int main()
     sample.insert(sample.begin()+1,0);
     cout << sample[1] << endl;
 
+
+    vector<int> bec = { 10, 20, 30, 40 };
+    int i = 2;
+    // inserts 7 at i-th index
+    bec.insert(bec.begin() + i, 7);
+
+
 }
