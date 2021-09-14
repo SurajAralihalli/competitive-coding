@@ -16,4 +16,6 @@ int main()
     q.pop();
     cout << q.front() << endl;
 
+    q.empty(); //true if empty
+
 }
