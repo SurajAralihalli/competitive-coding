@@ -10,18 +10,18 @@ public:
         int j=0;
         int sum=0;
         int maxi = INT_MIN;
-        // sum+= Arr[0];
+        
+        sum+= Arr[j];
+        
         while(j<N)
         {
             int w = j-i+1;
             if(w<K)
             {
-                sum+= Arr[j];
                 j++;
             }
             else if(w==K)
             {
-                sum+= Arr[j];
                 j++;
                 maxi = max(sum,maxi);
                 // cout << j << " " << sum << endl;
