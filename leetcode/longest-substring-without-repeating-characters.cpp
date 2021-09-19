@@ -13,13 +13,13 @@ public:
         for(int i=0;i<l;i++)
         {
             auto it = hash.find(s[i]);
-            if(it==hash.end() || i-it->second > window_size )
+            if(it==hash.end() || i - (it->second) > window_size )
             {
                 hash[s[i]]=i;
                 window_size ++;
                 maxi = max(maxi,window_size);
             }
-            else if(it!=hash.end() && i-it->second <= window_size)
+            else if(it!=hash.end() && i - (it->second) <= window_size)
             {
                 
                 window_size = i - hash[s[i]];
