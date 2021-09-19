@@ -14,16 +14,17 @@ vector<long long> printFirstNegativeInteger(long long int A[],
                      while(j<N)
                      {
                         //  cout << i << " " << j << endl;
+                         if(A[j]<0) q.push(A[j]);
                          int w = j-i+1;
                          if(w<K)
                          {
-                             if(A[j]<0) q.push(A[j]);
+                             
                              j++;
                              
                          }
                          else if(w==K)
                          {
-                             if(A[j]<0) q.push(A[j]);
+                             
                              j++;
                              
                              if(q.size()==0)
