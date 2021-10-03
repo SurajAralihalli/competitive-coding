@@ -43,10 +43,17 @@ int main()
     cout << sample[1] << endl;
 
 
-    vector<int> bec = { 10, 20, 30, 40 };
+    vector<int> bec = { 10, 20, 30, 40, 89,78, 59,60 };
     int i = 2;
     // inserts 7 at i-th index
     bec.insert(bec.begin() + i, 7);
+    
+    
+    // erase one element
+    bec.erase (myvector.begin()+5);
+
+    // erase the first 3 elements:
+    bec.erase (myvector.begin(),myvector.begin()+3);
 
 
 }
