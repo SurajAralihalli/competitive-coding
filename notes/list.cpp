@@ -48,6 +48,23 @@ int main()
     cout << "l2.sort(): ";
     l2.sort();
     showlist(l2);
+    
+    
+    
+    
+    vector<int> v = {1,2,3,3,3,3,3,4,5};
+    
+    list<int> l(v.begin(),v.end());
+    for(auto i: l)
+    {
+        cout << "l: " << i <<  endl;
+    }
+    
+    l.erase(find(l.begin(),l.end(),3));
+    for(auto i: l)
+    {
+        cout << "new l: " << i <<  endl;
+    }
   
     return 0;
   
