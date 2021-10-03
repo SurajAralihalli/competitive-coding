@@ -27,6 +27,11 @@ int main()
         cout << "not found" << endl;
     }
     
+    if(find(s.begin(),s.end(),make_pair(1,2))==s.end())
+    {
+        cout << "not found" << endl;
+    }
+    
     vector<int> v = {1,2,3,3,3,3,3,4,5};
     
     set <int> r(v.begin(),v.end());
