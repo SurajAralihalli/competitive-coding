@@ -1,7 +1,7 @@
 // Author: Suraj Aralihalli
 // Url: https://leetcode.com/problems/minimum-window-substring/
 // Date: 8th October, 2021
-// Tags: variable-sliding-window
+// Tags: variable-sliding-window, siliding-window
   
 class Solution {
 public:
@@ -90,3 +90,65 @@ public:
         return mini!=INT_MAX?s.substr(min_i,mini):"";
     }
 };
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+int minLengthSubstring(string s, string t) {
+  // Write your code here
+  int i=0;
+  int j=0;
+  int n = s.size();
+  int m = t.size();
+  vector<int> tvec(26,0);
+  for(char i: t)
+  {
+     tvec[i-'a']++;
+  }
+  int mini = INT_MAX;
+  vector<int> svec(26,0);
+  while(j<n)
+  {
+      svec[s[j]-'a']++;
+      bool flag = true;
+      for(int k=0;k<26;k++)
+      {
+        if(svec[k]<tvec[k])
+        {
+            flag = false;
+            break;
+        }
+      }
+      
+      if(flag==false)
+      {
+          j++;
+      }
+      else
+      {
+          flag =true;
+          while(flag)
+          {
+            mini = min(j-i+1,mini); 
+            svec[s[i]-'a']--;
+            i++;
+            for(int k=0;k<26;k++)
+              {
+                if(svec[k]<tvec[k])
+                  {
+                      flag = false;
+                      break;
+                  }
+              }
+          }
+          j++;
+      
+    
+      }
+  
+}
+  return mini==INT_MAX?-1:mini;
+                     
+}
