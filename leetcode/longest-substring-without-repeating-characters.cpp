@@ -30,3 +30,41 @@ public:
         return maxi;
     }
 };
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        int i=0;
+        int j=0;
+        int n = s.size();
+        int maxi = 0;
+        unordered_map<char,int> map;
+        while(j<n)
+        {
+            if(map.find(s[j])==map.end())
+            {
+                map[s[j]]=1;
+                maxi = max(maxi,j-i+1);
+                j++;
+            }
+            else
+            {
+                while(s[i]!=s[j])
+                {
+                    map.erase(map.find(s[i]));
+                    i++;
+                }
+                i++;
+                j++;
+            }
+            
+        }
+        return maxi;
+    }
+};
