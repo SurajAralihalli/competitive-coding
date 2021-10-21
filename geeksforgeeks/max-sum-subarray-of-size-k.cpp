@@ -3,6 +3,7 @@
 // Date: 18th September, 2021
 // Tags: sliding-window
 
+class Solution{   
 public:
     int maximumSumSubarray(int K, vector<int> &Arr , int N){
         // code here 
@@ -11,22 +12,24 @@ public:
         int sum=0;
         int maxi = INT_MIN;
         
-        sum+= Arr[j];
+        
         
         while(j<N)
         {
             int w = j-i+1;
+            sum+= Arr[j];
             if(w<K)
             {
                 j++;
             }
             else if(w==K)
             {
-                j++;
+                
                 maxi = max(sum,maxi);
                 // cout << j << " " << sum << endl;
                 sum-= Arr[i];
                 i++;
+                j++;
                 // cout << sum << endl;
                 
                 
