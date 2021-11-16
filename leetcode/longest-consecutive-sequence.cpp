@@ -2,7 +2,7 @@
 // Author: Suraj Aralihalli
 // Url: https://leetcode.com/problems/longest-consecutive-sequence/
 // Date: 7th June, 2021
-// Tags: map, union-find
+// Tags: map, union-find, sequence
 
 
 class Solution {
