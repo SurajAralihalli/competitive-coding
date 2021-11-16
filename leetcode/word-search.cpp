@@ -1,7 +1,7 @@
 // Author: Suraj Aralihalli
 // Url: https://leetcode.com/problems/word-search/
 // Date: 31th May, 2021
-// Tags: backtracking, recursion
+// Tags: backtracking, recursion, dfs
 
 
 class Solution {
