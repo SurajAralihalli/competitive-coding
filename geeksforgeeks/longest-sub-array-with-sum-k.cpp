@@ -29,7 +29,7 @@ class Solution{
             }
             else 
             {
-                while(sum<=K)
+                while(sum>K)
                 {
                     sum -= A[i];
                     i++;
