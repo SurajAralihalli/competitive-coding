@@ -3,7 +3,7 @@
 // Date: 9th November, 2021
 // Tags: binary-search
 
-
+//Approach 1
 class Solution {
 public:
     int findMin(vector<int>& nums) {
@@ -44,5 +44,41 @@ public:
             }
         }
         return -1;
+    }
+};
+
+// Approach 2
+class Solution {
+public:
+    int findMin(vector<int>& nums) {
+        int minEle = INT_MAX;
+        int n = nums.size();
+        int l =0;
+        int r = n-1;
+        
+        while(l<r)
+        {
+            if(nums[l] <= nums[r])
+            {
+                minEle = min(minEle, nums[l]);
+                break;
+            }
+            
+            int m = (l+r)/2;
+            minEle = min(minEle, nums[m]);
+            
+            if(nums[m]>=nums[l])
+            {
+                l = m+1;
+            }
+            else
+            {
+                r = m-1;
+            }
+        }
+        
+        if(l==r)  minEle = min(minEle, nums[l]);
+        
+        return minEle;
     }
 };
