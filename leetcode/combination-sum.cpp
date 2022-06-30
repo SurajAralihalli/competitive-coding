@@ -3,6 +3,7 @@
 // Date: 31th May, 2021
 // Tags: backtracking, recursion
 
+// Approach 1 - with sort
 class Solution {
 public:
     vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
@@ -45,6 +46,42 @@ public:
             }
             
             
+        }
+    }
+};
+
+
+// Approach 2 - without sort
+class Solution {
+public:
+    vector<vector<int>> mat;
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        vector<int> vec;
+        vec.clear();
+        generateCombination(candidates, vec, target, 0);
+        return mat;
+    }
+    
+    void generateCombination(vector<int>& candidates, vector<int> vec, int target, int index)
+    {
+        for(int i=index;i<candidates.size();i++)
+        {
+            //reached solution
+            if(target - candidates[i]==0)
+            {
+                vector<int> localVec(vec.begin(), vec.end());
+                localVec.push_back(candidates[i]);
+                mat.push_back(localVec);
+            }
+            //space for more
+            else if(target - candidates[i]>0)
+            {
+                vector<int> localVec(vec.begin(), vec.end());
+                localVec.push_back(candidates[i]);
+                // can add candidates[i] to vec again
+                generateCombination(candidates, localVec, target - candidates[i], i);
+            }
+         
         }
     }
 };
