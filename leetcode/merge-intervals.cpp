@@ -3,6 +3,7 @@
 // Date: 30th October, 2021
 // Tags: greedy, interval-scheduling
 
+// Approach 1
 class Solution {
 public:
     vector<vector<int>> merge(vector<vector<int>>& intervals) {
@@ -40,5 +41,43 @@ public:
     static bool comp(vector<int> a,  vector<int> b)
     {
         return a[0]<b[0];
+    }
+};
+
+
+// Approach 2
+class Solution {
+public:
+    vector<vector<int>> merge(vector<vector<int>>& intervals) {
+        priority_queue< pair<int, vector<int>>, vector<pair<int, vector<int>>>, greater<pair<int, vector<int>>> > pq;
+        vector<vector<int>> sol;
+        for(auto i: intervals)
+        {
+            pq.push({i[0], i});
+        }
+        
+        sol.push_back(pq.top().second);
+        pq.pop();
+        
+        while(!pq.empty())
+        {
+            auto t = pq.top();
+            auto l = sol.back();
+            
+            //compatible
+            if(t.first<= l[1])
+            {
+                sol.pop_back();
+                sol.push_back({l[0], max(l[1],t.second[1])});
+            }
+            else
+            {
+                sol.push_back(t.second);
+            }
+            
+            pq.pop();
+        }
+        
+        return sol;
     }
 };
