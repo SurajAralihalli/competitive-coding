@@ -2,6 +2,7 @@
 // Url: https://leetcode.com/problems/jump-game-ii/
 // Date: 20th May, 2021
 
+// Approach 1
 class Solution {
 public:
     int jump(vector<int>& nums) {
@@ -21,15 +22,43 @@ public:
                 i++;
             }
         }
-        // for(int i=0;i<nums.size();i++)
-        // {
-        //     cout << vec[i] << " ";
-        // }
-        // if(vec[nums.size()-1] || nums.size()==1)
-        // {
-        //     return true;
-        // }
-        // return false;
         return vec[n-1];
+    }
+};
+
+
+// Approach 2
+class Solution {
+public:
+    vector<int> marked;
+    int jump(vector<int>& nums) {
+        int n = nums.size();
+        marked.assign(n,-1);
+        return dp(nums,0);        
+    }
+    
+    int dp(vector<int>& nums, int index)
+    {
+        if(index>=nums.size()-1) 
+        {
+            return 0;
+        }
+        else if(marked[index]!=-1) 
+        {
+            return marked[index];
+        }
+        else
+        {
+            int minSteps = INT_MAX-1;
+            for(int i=1;i<=nums[index];i++)
+            {
+                
+                minSteps = min(minSteps, dp(nums, index+i));
+            }
+            
+            marked[index] = minSteps + 1;
+            return marked[index];
+        }
+        
     }
 };
