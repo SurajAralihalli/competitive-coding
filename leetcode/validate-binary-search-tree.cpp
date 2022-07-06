@@ -14,6 +14,45 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
+
+
+
+
+// Approach 1
+class Solution {
+public:
+    bool flag;
+    bool isValidBST(TreeNode* root) {
+        flag = true;
+        
+        dfs(root, LLONG_MIN);
+        return flag;
+        
+        
+    }
+    
+    long long dfs(TreeNode* root, long long val)
+    {
+        if(root!=NULL)
+        {
+            long long l = dfs(root->left,val);
+            if((long long)root-> val <= l)
+            {
+                flag = false;
+            }
+            
+            long long r = dfs(root->right,(long long)root-> val);
+            
+            return r;
+        }
+        else
+        {
+            return val;
+        }
+    }
+};
+
+// Approach 2
 class Solution {
 public:
     bool isValidBST(TreeNode* root) {
