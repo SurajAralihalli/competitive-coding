@@ -1,7 +1,7 @@
 
 // Author: Suraj Aralihalli
-// Url: https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/ (partial answer)
-// Date: 10th November, 2021
+// Url: https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/
+// Date: 6th July, 2021
 // Tags: trees, array
 
 /**
@@ -18,33 +18,32 @@
 class Solution {
 public:
     TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
-        int np = preorder.size();
-        int ni = inorder.size();
-        unordered_map<int,int> imap;
-        for(int i=0;i<ni;i++)
-        {
-            imap[inorder[i]] = i;
-        }
-        return recurse(preorder,inorder,0,np, 0,ni,imap);
+        return recursive(preorder, inorder, 0, preorder.size()-1, 0, inorder.size()-1);
     }
     
-    TreeNode* recurse(vector<int>& preorder, vector<int>& inorder, int p, int np, int i,  int ni,unordered_map<int,int> imap)
-    {
-        if(np>0 || ni>0)
+    
+    TreeNode* recursive(vector<int>& preorder, vector<int>& inorder, int lp, int rp, int li, int ri) {
+        if(lp<=rp)
         {
-            // cout << p << " " << np << " " << i << " " << ni << endl;
-            TreeNode* node = new TreeNode();
-            node->val = preorder[p];
             
-            int iindex = imap[preorder[p]];
-            int ln = iindex - i;
-            int rn = ni - ln - 1;
+            int i;
+            for(i=li;i<=ri;i++)
+            {
+                if(inorder[i]==preorder[lp]) break;
+            }
             
-            node->left = recurse(preorder,inorder,p+1,ln, i,ln,imap);
-            node->right = recurse(preorder,inorder,p+ln+1,rn, iindex+1,rn,imap);
+            int widthLeft = i - li;
+            
+            TreeNode* node = new TreeNode(preorder[lp]);
+            node -> left = recursive(preorder, inorder, lp+1, lp+widthLeft, li, i-1);
+            node->right = recursive(preorder, inorder, lp+widthLeft+1, rp, i+1, ri);
             
             return node;
         }
-        return NULL;
+        else 
+        {
+            return NULL;
+        };
     }
+    
 };
