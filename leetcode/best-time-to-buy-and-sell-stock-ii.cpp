@@ -5,6 +5,43 @@
 // Tags: stack
 
 
+//Approach 1
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        
+        int n = prices.size();
+        vector<int> dp(n,0);
+        stack<pair<int,int>> stk;
+        stk.push({0,prices[0]});
+        
+        
+        for(int i=1;i<n;i++)
+        {
+                        
+            while(!stk.empty() && stk.top().second >= prices[i])
+            {
+                stk.pop();
+            }
+            
+            if(!stk.empty())
+            {
+                dp[i] = max(dp[i-1], dp[stk.top().first] + (prices[i]- stk.top().second));
+            }
+            else
+            {
+                dp[i] = dp[i-1];
+            }
+            
+            stk.push({i,prices[i]});
+        }
+        
+        return dp[n-1];
+    }
+};
+
+
+//Approach 2
 class Solution {
 public:
     int maxProfit(vector<int>& prices) {
