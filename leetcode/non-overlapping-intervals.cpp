@@ -4,6 +4,7 @@
 // Tags: arrays, intervals
 
 // find max number of non overlapping intervals - sort based on end times
+// This is because, the interval with the earliest end time produces the maximal capacity to hold rest intervals.
 class Solution {
 public:
     int eraseOverlapIntervals(vector<vector<int>>& intervals) {
