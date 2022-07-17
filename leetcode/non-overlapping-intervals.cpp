@@ -1,4 +1,3 @@
-
 // Author: Suraj Aralihalli
 // Url: https://leetcode.com/problems/non-overlapping-intervals/
 // Date: 17th July, 2022
