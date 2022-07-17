@@ -25,7 +25,49 @@
  * };
  */
 
+//Approach 1
+class Solution {
+public:
+    TreeNode* sortedListToBST(ListNode* head) {
+        int n =0;
+        ListNode* p =head;
+        while(p!=NULL)
+        {
+            n++;
+            p = p-> next;
+        }
+        
+        return construct(head, n);
+    }
+    
+    TreeNode* construct(ListNode* head, int n)
+    {
 
+        if(n==0) return NULL;
+        ListNode* p = head;
+        int center = ceil((double)n/2);
+        int s=1;
+        while(true)
+        {
+            if(s==center) break;
+            s++;
+            p = p->next;
+        }
+        
+        TreeNode* node = new TreeNode(p->val);
+        
+        int numberOfNodesRight = n - center;
+        int numberOfNodesLeft = n - numberOfNodesRight - 1;
+    
+        node->left = construct(head, numberOfNodesLeft);
+        node->right = construct(p->next, numberOfNodesRight);
+        
+        return node;
+        
+    }
+};
+
+//Approach 2
 class Solution {
 public:
     TreeNode* sortedListToBST(ListNode* head) {
