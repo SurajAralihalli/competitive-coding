@@ -4,7 +4,41 @@
 // Date: 12th June, 2021
 // Tags: backtracking
 
+//Approach 2
+class Solution {
+public:
+    vector<vector<int>> mat;
+    vector<vector<int>> combinationSum3(int k, int n) {
+        vector<int>  vec;
+        backtracking(1, 0, n, k, vec);
+        return mat;
+    }
+    
+    void backtracking(int index, int sum, int n, int k, vector<int> vec)
+    {
+        for(int i = index; i<=9; i++)
+        {
+            if(sum+i==n && vec.size() + 1  == k)
+            {
+                vector<int> localVec(vec.begin(), vec.end());
+                localVec.push_back(i);
+                mat.push_back(localVec);
+            }
+            else if(sum+i <n && vec.size() < k)
+            {
+                vec.push_back(i);
+                backtracking(i+1, sum+i, n, k, vec);
+                vec.pop_back();
+            }
+            else
+            {
+                break;
+            }
+        }
+    }
+};
 
+//Approach 1
 class Solution {
 public:
     vector<vector<int>> combinationSum3(int k, int n) {
