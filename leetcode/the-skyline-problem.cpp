@@ -1,74 +1,95 @@
 // Author: Suraj Aralihalli
 // Url: https://leetcode.com/problems/the-skyline-problem/
-// Date: 10th September, 2021
-// Tags: skyline
+// Date: 25th August, 2022
+// Tags: heap, priority-queue, line-sweep
 
-// This code failed with memory exceeded error
 class Solution {
 public:
     vector<vector<int>> getSkyline(vector<vector<int>>& buildings) {
-        vector< vector <int> > arr;
-        vector< vector <int> > ans;
-        vector<int> temp;
-        int n = buildings.size();
-        
-        int mini = buildings.front()[0];
-        long long maxi = buildings.back()[1];
-        temp.assign(maxi+2,0);
+        vector<vector<int>> coordinates;
         for(auto b: buildings)
         {
-            for(int i=b[0];i<=b[1];i++)
-            {
-                if(temp[i]<b[2] || (temp[i+1]<b[2] && i+1 <= b[1]))
-                {
-                    temp[i] = b[2];
-                }
-            }
+            vector<int> left = {b[0],b[2],0};
+            vector<int> right = {b[1],b[2],1};
+            coordinates.push_back(left);
+            coordinates.push_back(right);
         }
         
-        for(int i=1;i<maxi+2;i++)
+        sort(coordinates.begin(), coordinates.end(), comp1);
+        
+        auto comp2 = [](int a,int b) {return a>b;};
+        //max heap - priority queue
+        multiset<int, decltype(comp2)> pq(comp2);
+        
+        int maxHeight = 0;
+        pq.insert(0);
+        
+        vector<vector<int>> sol;
+        
+        for(auto coord: coordinates)
         {
-            if(temp[i]==0 && i-1>=0)
-            {
-                temp[i-1]=0;
-            }
+            int x = coord[0];
+            int h = coord[1];
+            int se = coord[2];
             
-        }
-        
-        for(auto i: temp)
-        {
-            cout << i << " ";
-        }
-         // for(int i=0;i<maxi+2;i++)
-         // {
-         //     cout << i << " " << temp[i] << " ";
-         // }
-        cout << endl;
-        // cout << "bool calculate "<< int(temp[0]!=0) << endl;
-        for(int i=0;i<maxi+2;i++)
-        {
-            cout << i << endl;
-            // cout << "bool calculate "<< int(temp[0]!=0) << endl;
-            if( (i==0) )
-            {   
-                if(int(temp[0]!=0))
-                {
-                    // cout << "here" << endl;
-                    ans.push_back({i,temp[i]});
-                }
-                
-            }
-            else if(temp[i]!=temp[i-1])
+            //start
+            if(se==0)
             {
-                ans.push_back({i,temp[i]});
+                pq.insert(h);
+                if(*pq.begin()!=maxHeight)
+                {
+                    maxHeight = h;
+                    sol.push_back({x,maxHeight});
+                }
+            }
+            else
+            {
+                pq.erase(pq.find(h));
+                if(*pq.begin()!=maxHeight)
+                {
+                    maxHeight = *pq.begin();
+                    sol.push_back({x,maxHeight});
+                }
             }
         }
         
-        return ans;
+        
+        return sol;
+        
     }
     
-    static bool sort_f(vector<int> a, vector<int> b)
+    static bool comp1(vector<int> a, vector<int> b)
     {
-        return a[0] <= b[0];
+        int x1 = a[0];
+        int h1 = a[1];
+        int se1 = a[2];
+        
+        int x2 = b[0];
+        int h2 = b[1];
+        int se2 = b[2];
+        
+        //starts
+        if(x1 == x2 && se1==se2 && se1==0)
+        {
+            return h1 > h2;
+        }
+        //ends
+        else if(x1 == x2 && se1==se2 && se1==1)
+        {
+            return h1 < h2;
+        }
+        else if(x1 == x2 && se1!=se2 && h1==h2)
+        {
+            return se1 < se2;
+        }
+        else if(x1 == x2 && se1!=se2)
+        {
+            return se2 > se1;
+        }
+        else
+        {
+            return x1 < x2;
+        }
     }
+    
 };
