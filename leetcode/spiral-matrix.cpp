@@ -1,53 +1,60 @@
 
 // Author: Suraj Aralihalli
 // Url: https://leetcode.com/problems/spiral-matrix/
-// Date: 16th November, 2021
+// Date: 2nd September, 2022
 // Tags: matrix, spiral
 
 class Solution {
 public:
     vector<int> spiralOrder(vector<vector<int>>& matrix) {
-        vector<int> ans;
-        int n = matrix.size();
-        int m = matrix[0].size();
-        int up=0;
-        int down= n-1;
+        int m = matrix.size();
+        int n = matrix[0].size();
+        int top = 0;
+        int down = m-1;
         int left = 0;
-        int right = m-1;
+        int right = n-1;
+        int direction = 0;
         
+        vector<int> vec;
         
-        while(ans.size()<n*m)
-            
+        while(left<=right && top<=down)
         {
-            //cout << up << " " << down << " " << left << " " << down << endl;
-            for(int j=left;j<=right && ans.size()<n*m;j++)
+            if(direction == 0)
             {
-                ans.push_back(matrix[up][j]);
+                for(int i=left; i<=right; i++)
+                {
+                    vec.push_back(matrix[top][i]);
+                }
+                top++;
             }
-            for(int i=up+1;i<=down && ans.size()<n*m;i++)
+            else if(direction == 1)
             {
-                ans.push_back(matrix[i][right]);
+                for(int i=top; i<=down; i++)
+                {
+                    vec.push_back(matrix[i][right]);
+                }
+                right--;
+            }
+            else if(direction == 2)
+            {
+                for(int i=right;i>=left; i--)
+                {
+                    vec.push_back(matrix[down][i]);
+                }
+                down--;
+            }
+            else
+            {
+                for(int i=down;i>=top;i--)
+                {
+                    vec.push_back(matrix[i][left]);
+                }
+                left++;
             }
             
-            for(int j=right-1;j>=left && ans.size()<n*m;j--)
-            {
-                ans.push_back(matrix[down][j]);
-            }
-            for(int i=down-1;i>up && ans.size()<n*m;i--)
-            {
-                ans.push_back(matrix[i][left]);
-            }
-            
-            left++;
-            right--;
-            up++;
-            down--;
-            
-
+            direction = (direction+1)%4;
         }
         
-       
-        
-        return ans;
+        return vec;
     }
 };
