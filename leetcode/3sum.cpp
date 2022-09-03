@@ -3,6 +3,51 @@
 // Date: 16th May, 2021
 // Tags: 2 pointers
 
+//Approach 1
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int>& nums) {
+        sort(nums.begin(), nums.end());
+        vector<vector<int>> sol;
+        int n = nums.size();
+        for(int i = 0;i<n;i++)
+        {
+            // already included
+            if(i>0 && nums[i]==nums[i-1])
+            {
+                continue;
+            }
+            int l=i+1;
+            int r=n-1;
+            while(l<r)
+            {
+                int sum = nums[i] + nums[l] + nums[r];
+                if(sum==0)
+                {
+                    sol.push_back({nums[i], nums[l], nums[r]});
+                    int L = nums[l];
+                    
+                    // avoid duplicates
+                    while(nums[l]==L && l<r)
+                    {
+                        l++;
+                    }
+                }
+                else if(sum>0)
+                {
+                    r--;
+                }
+                else
+                {
+                    l++;
+                }
+            }
+        }
+        return sol;
+    }
+};
+
+//Approach 1
 class Solution {
 public:
     vector<vector<int>> threeSum(vector<int>& nums) {
