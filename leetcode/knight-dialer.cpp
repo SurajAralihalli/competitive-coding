@@ -34,8 +34,7 @@ public:
                 
                 for(int k:map[i])
                 {
-                    long long temp = ((sum % (int) (pow(10,9)+7))  + (mat[k][j-1] % (int) (pow(10,9)+7)));
-                    sum = temp;
+                    sum = ((sum % (int) (pow(10,9)+7))  + (mat[k][j-1] % (int) (pow(10,9)+7)));
                 }
                 
                 mat[i][j] = sum;
@@ -45,8 +44,7 @@ public:
         int count=0;
         for(int i=0;i<=9;i++)
         {
-            long long temp = (count % (int) (pow(10,9)+7))  + (mat[i][n] % (int) (pow(10,9)+7));
-            count = temp;
+            count = (count % (int) (pow(10,9)+7))  + (mat[i][n] % (int) (pow(10,9)+7));
         }
         
         return count % (int) (pow(10,9)+7);
