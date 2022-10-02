@@ -3,6 +3,40 @@
 // Date: 31th May, 2021
 // Tags: backtracking, recursion
 
+
+// Approach 3
+class Solution {
+public:
+    vector<vector<int>> sol;
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        vector<int> vec;
+        dfs(candidates, target, vec, 0);
+        return sol;
+    }
+    
+    void dfs(vector<int>& candidates, int target, vector<int> vec, int index)
+    {
+        if(target<0)
+        {
+            return;
+        }
+        
+        if(target==0)
+        {
+            sol.push_back(vec);
+            return;
+        }
+        
+        for(int i=index;i<candidates.size();i++)
+        {
+            vec.push_back(candidates[i]);
+            dfs(candidates, target-candidates[i], vec, i);
+            vec.pop_back();
+        }
+    }
+};
+
+
 // Approach 1 - with sort
 class Solution {
 public:
