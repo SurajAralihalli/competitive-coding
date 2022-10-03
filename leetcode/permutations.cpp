@@ -3,6 +3,44 @@
 // Date: 23rd June, 2021
 // Tags: backtracking
 
+//Approach 1
+class Solution {
+public:
+    vector<vector<int>> sol;
+    vector<vector<int>> permute(vector<int>& nums) {
+        unordered_map<int, bool> used;
+        for(int i: nums)
+        {
+            used[i] = false;
+        }
+        vector<int> vec;
+        dfs(nums,used,vec);
+        return sol;
+    }
+    void dfs(vector<int>& nums, unordered_map<int, bool>& used, vector<int> vec)
+    {
+        int n = nums.size();
+        if(vec.size()==n)
+        {
+           sol.push_back(vec);
+           return;
+        }
+        
+        for(int i: nums)
+        {
+            if(used[i]==false)
+            {
+                used[i]=true;
+                vec.push_back(i);
+                dfs(nums,used,vec);
+                vec.pop_back();
+                used[i]=false;
+            }
+        }
+    }
+};
+
+//Approach 2
 class Solution {
 public:
     vector<vector<int>> permute(vector<int>& nums) {
