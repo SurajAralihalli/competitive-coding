@@ -4,6 +4,34 @@
 // Tags: backtracking, recursion
 
 
+// Approach 2
+class Solution {
+public:
+    vector<vector<int>> sol;
+    vector<vector<int>> subsets(vector<int>& nums) {
+        vector<int> vec;
+        dfs(nums,0,vec);
+        return sol;
+    }
+    
+    void dfs(vector<int>& nums, int index, vector<int> vec)
+    {
+        int n = nums.size();
+        sol.push_back(vec);
+        
+        for(int i=index;i<n;i++)
+        {
+            vec.push_back(nums[i]);
+            dfs(nums,i+1,vec);
+            vec.pop_back();
+        }
+    }
+};
+
+
+
+
+// Approach 1
 class Solution {
 public:
     vector<vector<int>> mat;
