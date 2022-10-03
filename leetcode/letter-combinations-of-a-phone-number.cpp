@@ -25,7 +25,7 @@ public:
     void dfs(string digits, int index, string s)
     {
         int n = digits.size();
-        if(index==n)
+        if(index==n && n!=0)
         {
             sol.push_back(s);
             return;
