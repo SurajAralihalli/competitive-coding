@@ -42,19 +42,17 @@ public:
     {
         Node* cloneNode = new Node(node->val);
         map[node] = cloneNode;
-        vector<Node*> vec;
-        for(auto i: node->neighbors)
+        for(auto neighbour: node->neighbors)
         {
-            if(map.find(i)==map.end())
+            if(map.find(neighbour)==map.end())
             {
-                dfs(i);
-                vec.push_back(map[i]);
+                dfs(neighbour);
+                cloneNode -> neighbors.push_back(map[neighbour]);
             }
             else
             {
-                vec.push_back(map[i]);
+                cloneNode -> neighbors.push_back(map[neighbour]);
             }
         }
-        cloneNode -> neighbors = vec;
     }
 };
