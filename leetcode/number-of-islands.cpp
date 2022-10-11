@@ -6,51 +6,42 @@
 class Solution {
 public:
     int numIslands(vector<vector<char>>& grid) {
-        int m = grid.size();
-        int n = grid[0].size();
-        vector<vector<int>> mark;
-        mark.assign(m,vector<int>(n,0));
+        int n = grid.size();
+        int m = grid[0].size();
         int count=0;
-        for(int i=0;i<m;i++)
+        
+        vector<vector<int>> visited(n, vector<int>(m,0));
+        
+        for(int i=0;i<n;i++)
         {
-            for(int j=0;j<n;j++)
+            for(int j=0;j<m;j++)
             {
-                if(grid[i][j]=='1' && mark[i][j]==0)
+                if(grid[i][j]=='1' && visited[i][j]==0)
                 {
                     count++;
-                    visit(i,j,grid,mark);
+                    dfs(grid, visited, i, j);
                 }
             }
         }
+        
         return count;
     }
     
-    static void visit(int i,int j,vector<vector<char>>& grid, vector<vector<int>>& mark)
+    void dfs(vector<vector<char>>& grid, vector<vector<int>>& visited, int i, int j)
     {
-        
-      
-        if(mark[i][j]==1) {return;}
-        mark[i][j]=1;
-        if(grid[i][j]=='0') {return;}
-        int m = grid.size();
-        int n = grid[0].size();
-        if(i-1>=0)
+        int n = grid.size();
+        int m = grid[0].size();
+        if(i>=n || i<0 || j>=m || j<0 || visited[i][j]==1 || grid[i][j]=='0')
         {
-            visit(i-1,j, grid, mark);
+            return;
         }
-        if(j-1>=0)
+        else
         {
-            visit(i,j-1, grid, mark);
+            visited[i][j]=1;
+            dfs(grid, visited, i+1, j);
+            dfs(grid, visited, i-1, j);
+            dfs(grid, visited, i, j+1);
+            dfs(grid, visited, i, j-1);
         }
-        if(i+1<m)
-        {
-            visit(i+1,j, grid, mark);
-        }
-        if(j+1<n)
-        {
-            visit(i,j+1, grid, mark);
-        }
-        return;
     }
-        
 };
