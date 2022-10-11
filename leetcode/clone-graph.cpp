@@ -40,19 +40,24 @@ public:
     }
     void dfs(Node* node)
     {
-        Node* cloneNode = new Node(node->val);
-        map[node] = cloneNode;
-        for(auto neighbour: node->neighbors)
+        // visited already
+        if(map.find(node)!=map.end())
         {
-            if(map.find(neighbour)==map.end())
+            return;
+        }
+        else
+        {
+            Node* cloneNode = new Node(node->val);
+            // mark visited
+            map[node] = cloneNode;
+            // dfs
+            for(auto neighbour: node->neighbors)
             {
                 dfs(neighbour);
                 cloneNode -> neighbors.push_back(map[neighbour]);
             }
-            else
-            {
-                cloneNode -> neighbors.push_back(map[neighbour]);
-            }
+            return;
         }
+        
     }
 };
