@@ -1,7 +1,7 @@
 // Author: Suraj Aralihalli
 // Url: https://leetcode.com/problems/merge-intervals/
 // Date: 30th October, 2021
-// Tags: greedy, interval-scheduling
+// Tags: greedy, interval-scheduling, intervals
 
 // Approach 1
 class Solution {
