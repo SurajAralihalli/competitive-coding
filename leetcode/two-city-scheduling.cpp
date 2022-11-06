@@ -5,7 +5,24 @@
 
 
 //Approach 2
-
+class Solution {
+public:
+    int twoCitySchedCost(vector<vector<int>>& costs) {
+        sort(costs.begin(), costs.end(), asc);
+        int total=0;
+        int n = costs.size()/2;
+        for(int i =0;i<n;i++)
+        {
+            total += costs[i][0] + costs[i+n][1];
+        }
+        return total;
+    }
+    
+    static bool asc(vector<int> p, vector<int> q)
+    {
+        return (p[0]-p[1] < q[0]-q[1]);
+    }
+};
 
 
 //Approach 1
