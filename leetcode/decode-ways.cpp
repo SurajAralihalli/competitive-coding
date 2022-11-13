@@ -10,13 +10,10 @@ public:
     int numDecodings(string s) {
         
         int n = s.size();
+        
         dp.assign(n+1,-1);
-        decode(s,0,n);
-        // for(auto i:dp)
-        // {
-        //     cout << i << endl;
-        // }
-        return dp[0];
+        
+        return decode(s,0,n);
     }
     int decode(string s, int i, int n)
     {
@@ -28,20 +25,19 @@ public:
         }
         else if(i==n)
         {
-            // cout << "just end of string" << endl;
             return 1;
         }
         
-        if(dp[i]!=-1) return dp[i];
-        
-        else if((int(s[i]) - int('1') +1 )>2)
+        if(dp[i]!=-1) 
         {
-            // cout << ">2 case" << endl;
+            return dp[i];
+        }
+        else if(s[i] - '0' > 2)
+        {
             ans = decode(s,i+1,n);
         }
-        else if((int(s[i]) - int('1') + 1)>0)
+        else if(s[i] - '0' > 0)
         {
-            // cout << "1 & 2 case" << endl;
             ans = decode(s,i+2,n);
             if((stoi(s.substr(i,2)))<27)
             {
@@ -50,7 +46,6 @@ public:
         }
         else
         {
-            // cout << "0 case" << endl;
             ans =0;
         }
         
@@ -58,7 +53,6 @@ public:
         return dp[i];
     }
 };
-
 
 
 
