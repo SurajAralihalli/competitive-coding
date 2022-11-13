@@ -1,23 +1,21 @@
 // Author: Suraj Aralihalli
 // Url: https://leetcode.com/problems/permutations/
-// Date: 23rd June, 2021
+// Date: 13th Nov, 2021
 // Tags: backtracking
 
-//Approach 1
 class Solution {
 public:
     vector<vector<int>> sol;
+    unordered_set<int> used;
+    
     vector<vector<int>> permute(vector<int>& nums) {
-        unordered_map<int, bool> used;
-        for(int i: nums)
-        {
-            used[i] = false;
-        }
+
         vector<int> vec;
-        dfs(nums,used,vec);
+        dfs(nums,vec);
         return sol;
     }
-    void dfs(vector<int>& nums, unordered_map<int, bool>& used, vector<int> vec)
+    
+    void dfs(vector<int>& nums, vector<int> vec)
     {
         int n = nums.size();
         if(vec.size()==n)
@@ -28,49 +26,15 @@ public:
         
         for(int i: nums)
         {
-            if(used[i]==false)
+            if(used.count(i) == 0)
             {
-                used[i]=true;
+                used.insert(i);
                 vec.push_back(i);
-                dfs(nums,used,vec);
+                
+                dfs(nums,vec);
+                
                 vec.pop_back();
-                used[i]=false;
-            }
-        }
-    }
-};
-
-//Approach 2
-class Solution {
-public:
-    vector<vector<int>> permute(vector<int>& nums) {
-        vector<vector<int>> mat;
-        unordered_map<int,bool> map;
-        for(int i:nums)
-        {
-            map[i]=false;
-        }
-        vector<int> vec;
-        help(nums,map,mat,vec);
-        return mat;
-    }
-    
-    void help(vector<int>& nums,unordered_map<int,bool>& map,vector<vector<int>>& mat, vector<int> vec)
-    {
-        for(int i: nums)
-        {
-            if(map[i]==false)
-            {
-                vec.push_back(i);
-                if(vec.size() == nums.size())
-                {
-                    mat.push_back(vec);
-                    break;
-                }
-                map[i]=true;
-                help(nums,map,mat,vec);
-                vec.pop_back();
-                map[i]=false;
+                used.erase(i);
             }
         }
     }
