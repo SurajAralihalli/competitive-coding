@@ -1,7 +1,7 @@
 // Author: Suraj Aralihalli
 // Url: https://leetcode.com/problems/asteroid-collision/
 // Date: 15th Nov, 2021
-// Tags: stk
+// Tags: stack, stacks
 
 class Solution {
 public:
