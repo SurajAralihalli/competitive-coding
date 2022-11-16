@@ -3,7 +3,52 @@
 // Date: 15th Nov, 2021
 // Tags: backtracking
 
+// Approach 2
+class Solution {
+public:
+    vector<vector<int>> sol;
+    int k;
+    vector<vector<int>> getFactors(int n) {
+        vector<int> vec;
+        if(n==1) 
+        {
+            return {};
+        }
+        
+        dfs(n,vec, 2, 1);
+        return sol;
+    }
+    
+    void dfs(int target, vector<int>& vec, int start, int productSoFar)
+    {
+        if(productSoFar==target)
+        {
+            sol.push_back(vec);
+            return;
+        }
+        else
+        {
+            for(int i=start;i<target;i++)
+            {
+                long long v = (long long)productSoFar * (long long)i;
+                if(v>target)
+                {
+                    break;
+                }
+                
+                if(target%i==0)
+                {
+                    vec.push_back(i);
+                    dfs(target,vec,i, productSoFar*i);
+                    vec.pop_back();
+                }
+                
+            }
+        }
+    }
+};
 
+// Approach 1
 class Solution {
 public:
     vector<vector<int>> sol;
