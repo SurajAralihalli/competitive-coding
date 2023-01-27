@@ -1,7 +1,7 @@
-// Author: Suraj Aralihalli
-// Url: https://leetcode.com/problems/implement-trie-prefix-tree/
-// Date: 21st November, 2021
-// Tags: trie, prefix-tree
+# Author: Suraj Aralihalli
+# Url: https://leetcode.com/problems/implement-trie-prefix-tree/
+# Date: 21st November, 2021
+# Tags: trie, prefix-tree
 
 class Node:
     def __init__(self):
