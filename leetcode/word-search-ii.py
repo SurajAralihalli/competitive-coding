@@ -1,7 +1,7 @@
-// Author: Suraj Aralihalli
-// Url: https://leetcode.com/problems/word-search-ii/
-// Date: 28th August, 2022
-// Tags: trie, prefix-tree
+# Author: Suraj Aralihalli
+# Url: https://leetcode.com/problems/word-search-ii/
+# Date: 28th August, 2022
+# Tags: trie, prefix-tree
 
 class TrieNode:
     def __init__(self):
