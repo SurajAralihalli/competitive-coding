@@ -4,8 +4,123 @@
 // Tags: hashmap, doubly-linked-list, link-list
 
 
+//Approach 2
+class Node {
+    public:
+        int key;
+        int value;
+        Node* prev;
+        Node* next;
+    Node(int key, int value, Node* prev, Node* next) {
+        this->key = key;
+        this->value = value;
+        this->prev = prev;
+        this->next = next;
+    }
+};
 
+class LinkedList {
+    public:
+        Node* head;
+        Node* tail;
+        int count;
+    LinkedList() {
+        head = NULL;
+        tail = NULL;
+        count = 0;
+    }
 
+    void addAtEnd(Node* node) {
+        if(count == 0) {
+            node->prev = NULL;
+            node->next = NULL;
+            head = node;
+            tail = node;
+        }
+        else {
+            tail->next = node;
+            node->prev = tail;
+            node->next = NULL;
+            tail = node;
+        }
+        count++;
+    }
+
+    void removeNode(Node* node) {
+        Node* next = node->next;
+        Node* prev = node->prev;
+
+        if(next!=NULL) { 
+            next->prev = prev;
+        }
+        else { //removing tail node
+            tail = prev;
+        }
+
+        if(prev!=NULL) {
+            prev->next = next;
+        }
+        else { //removing head node
+            head = next;
+        }
+        // delete node;
+        count--;
+    }
+
+};
+
+class LRUCache {
+public:
+    LinkedList* linkedList;
+    unordered_map<int, Node*> map;
+    int capacity;
+    LRUCache(int capacity) {
+        linkedList = new LinkedList();
+        this->capacity = capacity;
+    }
+    
+    int get(int key) {
+        if(map.find(key)!=map.end()) {
+            Node* node = map[key];
+            int value = node->value;
+            linkedList->removeNode(node);
+            linkedList->addAtEnd(node);
+            return value;
+        }
+        else {
+            return -1;
+        }
+    }
+    
+    void put(int key, int value) {
+        if(map.find(key)!=map.end()) {
+            Node* node = map[key];
+            node->value = value;
+
+            linkedList->removeNode(node);
+            linkedList->addAtEnd(node);
+        }
+        else {
+            if(linkedList->count < capacity) {
+                Node* node = new Node(key, value, NULL, NULL);
+                map[key] = node;
+                linkedList->addAtEnd(node);
+            }
+            else {
+                map.erase(linkedList->head->key);
+                Node* oldNode = linkedList->head;
+                linkedList->removeNode(linkedList->head);
+                delete oldNode;
+                
+                Node* node = new Node(key, value, NULL, NULL);
+                map[key] = node;
+                linkedList->addAtEnd(node);
+            }
+        }
+    }
+};
+
+//Approach 1
 class LRUCache {
     
 private:
