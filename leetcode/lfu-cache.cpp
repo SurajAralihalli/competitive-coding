@@ -19,10 +19,11 @@ public:
     }
     
     int get(int key) {
+        cout << key << endl;
         if(cache.find(key)!=cache.end()) {
             int f = cache[key].first;
             auto f_iter = cache[key].second;
-            
+
             int value = f_iter->second;
 
             cache.erase(key);
@@ -39,14 +40,12 @@ public:
     }
     
     void put(int key, int value) {
+        cout << key << " " << value << endl;
         if(cache.find(key)!=cache.end()) {
+
             auto f_iter = cache[key].second;
-            int f = cache[key].first;
-
-            cache.erase(key);
-            frequencies[f].erase(f_iter);
-
-            insert(key, value, f+1);
+            f_iter->second = value;
+            get(key); // important to update minf
 
         }
         else {
