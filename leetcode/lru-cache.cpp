@@ -3,6 +3,62 @@
 // Date: 2nd July, 2021
 // Tags: hashmap, doubly-linked-list, link-list
 
+// Approach 3
+class LRUCache {
+public:
+    list<pair<int,int>> linkedList;
+    unordered_map<int, list<pair<int,int>>::iterator> map;
+    int capacity;
+    LRUCache(int capacity) {
+        this->capacity = capacity;
+    }
+    
+    int get(int key) {
+        if(map.find(key)!=map.end()) {
+            auto node = map[key];
+            int value = node->second;
+            linkedList.erase(node);
+            linkedList.push_back({key, value});
+            map[key] = prev(linkedList.end(),1);
+            return value;
+        }
+        else {
+            return -1;
+        }
+    }
+    
+    void put(int key, int value) {
+        if(map.find(key)!=map.end()) {
+            auto node = map[key];
+
+            linkedList.erase(node);
+            linkedList.push_back({key, value});
+            map[key] = prev(linkedList.end(),1);
+        }
+        else {
+            if(linkedList.size() < capacity) {
+                linkedList.push_back({key, value});
+                map[key] = prev(linkedList.end(),1);
+                
+            }
+            else {
+                auto node = linkedList.begin();
+                map.erase(node->first);
+                linkedList.erase(node);
+                
+                linkedList.push_back({key, value});
+                map[key] = prev(linkedList.end(),1);
+            }
+        }
+    }
+};
+
+/**
+ * Your LRUCache object will be instantiated and called as such:
+ * LRUCache* obj = new LRUCache(capacity);
+ * int param_1 = obj->get(key);
+ * obj->put(key,value);
+ */
 
 //Approach 2
 class Node {
