@@ -74,7 +74,7 @@ void* parallel_crawl(void* hp) {
                 done = true;
                 cout << "done" << endl;
             }
-            pthread_cond_signal(&cv);
+            pthread_cond_broadcast(&cv);
             pthread_mutex_unlock(&mutex_lock);
         }
     }
