@@ -11,7 +11,6 @@
  *     vector<string> getUrls(string url);
  * };
  */
-
 unordered_set<string> crawled;
 queue<string> tasks;
 int working_threads;
@@ -27,26 +26,25 @@ bool areSameHostname(string a, string b) {
         getline(ss, tokenA, '/');
     }
 
-    stringstream ss2(a);
+    stringstream ss2(b);
     string tokenB = "";
     for(int i=0;i<3;i++)
     {
         getline(ss2, tokenB, '/');
     }
 
-    return tokenA == tokenB;
+    return (tokenA == tokenB);
 }
 
 void* parallel_crawl(void* hp) {
+        // crawled.clear();
         while(true) {
             pthread_mutex_lock(&mutex_lock);
             while( tasks.empty() && !done ) {
-                cout << "here" << endl;
                 pthread_cond_wait(&cv, &mutex_lock);
             }
 
             if(done) {
-                cout << "exit" << endl;
                 pthread_cond_broadcast(&cv);
                 pthread_mutex_unlock(&mutex_lock);
                 return NULL;
@@ -54,7 +52,6 @@ void* parallel_crawl(void* hp) {
 
             working_threads++;
             string host_url = tasks.front(); tasks.pop();
-            cout << host_url << endl;
             pthread_cond_signal(&cv);
             pthread_mutex_unlock(&mutex_lock);
 
@@ -72,7 +69,6 @@ void* parallel_crawl(void* hp) {
             working_threads--;
             if(tasks.empty() && working_threads==0) {
                 done = true;
-                cout << "done" << endl;
             }
             pthread_cond_broadcast(&cv);
             pthread_mutex_unlock(&mutex_lock);
@@ -88,6 +84,7 @@ public:
         pthread_mutex_init(&mutex_lock, NULL);
         pthread_cond_init(&cv, NULL);
         working_threads = 0;
+        crawled.clear();
         crawled.insert(startUrl);
         tasks.push(startUrl);
         done = false;
@@ -95,8 +92,8 @@ public:
         unsigned int n = std::thread::hardware_concurrency();
 
         pthread_t threads[n];
-        for(auto worker: threads) {
-            pthread_create(&worker, NULL, parallel_crawl, &htmlParser);
+        for(int i=0;i<n;i++) {
+            pthread_create(&threads[i], NULL, parallel_crawl, &htmlParser);
         }
 
         for(auto worker: threads) {
