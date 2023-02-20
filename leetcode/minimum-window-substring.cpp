@@ -1,7 +1,7 @@
 // Author: Suraj Aralihalli
 // Url: https://leetcode.com/problems/minimum-window-substring/
 // Date: 8th October, 2021
-// Tags: variable-sliding-window, siliding-window
+// Tags: variable-sliding-window, sliding-window
   
 class Solution {
 public:
