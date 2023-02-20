@@ -2,7 +2,65 @@
 // Url: https://leetcode.com/problems/minimum-window-substring/
 // Date: 8th October, 2021
 // Tags: variable-sliding-window, sliding-window
-  
+
+// Approach2
+class Solution {
+public:
+    string minWindow(string s, string t) {
+        int i=0;
+        int j=0;
+        int n = s.size();
+        int m = t.size();
+        unordered_map<char,int> tmap;
+        unordered_map<char,int> smap;
+        int min_i = 0;
+        for(char i: t)
+        {
+            tmap[i]++;
+        }
+        int mini = INT_MAX;
+        
+
+        while(j<n) {
+            int w = j-i+1;
+            smap[s[j]]++;
+
+            if(!checkCondition(smap, tmap)) {
+                j++;
+            }
+            else {
+                while(checkCondition(smap, tmap)) {
+                    int w = j-i+1;
+                    if(w<mini) {
+                        min_i = i;
+                        mini = w;
+                    }
+                    smap[s[i]]--;
+                    i++;
+                }
+                
+                j++;
+            }
+        }
+        
+
+        string ans =  mini!=INT_MAX?s.substr(min_i,mini):"";
+        return ans;
+    }
+
+    bool checkCondition(unordered_map<char,int>& smap, unordered_map<char,int>& tmap) {
+      for(auto i: tmap)
+      {
+        if(smap.find(i.first)==smap.end() || smap[i.first] < i.second)
+        {
+            return false;
+        }
+      }
+      return true;
+    }
+};
+
+// Approach1
 class Solution {
 public:
     string minWindow(string s, string t) {
