@@ -1,7 +1,7 @@
 // Author: Suraj Aralihalli
 // Url: https://leetcode.com/problems/course-schedule-ii/
 // Date: 10th July, 2022
-// Tags: graphs, toposort, dfs
+// Tags: graph, toposort, dfs
 
 class Solution {
 public:
