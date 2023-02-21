@@ -13,6 +13,45 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
+
+
+//Approach 2
+class Solution {
+public:
+    void reorderList(ListNode* head) {
+        int count = 0;
+        ListNode* fast = head;
+        ListNode* slow = head;
+        stack<ListNode*> stk;
+        while(fast!=NULL && fast->next!=NULL){
+            fast = fast->next->next;
+            slow = slow->next;
+        }
+
+        ListNode* mid = slow;
+        while(mid!=NULL) {
+            stk.push(mid);
+            mid = mid->next;
+        }
+
+        ListNode* cur = head;
+        ListNode* top;
+        while(!stk.empty()){
+            top = stk.top();
+            stk.pop();
+            cout << cur->val << " " << top->val << endl;
+            top->next = cur->next;
+            cur->next = top;
+            cur = top->next;
+        }
+
+        top->next = NULL;
+
+        return;
+    }
+};
+
+//Approach 1
 class Solution {
 public:
     void reorderList(ListNode* head) {
