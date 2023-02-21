@@ -1,7 +1,7 @@
 // Author: Suraj Aralihalli
 // Url: https://leetcode.com/problems/lru-cache/
 // Date: 2nd July, 2021
-// Tags: hashmap, doubly-linked-list, link-list
+// Tags: hashmap, doubly-linked-list, linked-list
 
 // Approach 3
 class LRUCache {
