@@ -13,6 +13,46 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
+
+// Approach 2
+class Solution {
+public:
+    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
+        ListNode* head = new ListNode();
+        ListNode* cur = head;
+        ListNode* l1 = list1;
+        ListNode* l2 = list2;
+        while(l1!=NULL && l2!=NULL)
+        {
+            if(l1->val <= l2->val)
+            {
+                cur->next = l1;
+                cur = cur->next;
+                l1 = l1->next;
+            }
+            else
+            {
+                cur->next = l2;
+                cur = cur->next;
+                l2 = l2->next;
+            }
+        }
+        
+        if(l1!=NULL)
+        {
+            cur->next = l1;
+        }
+        else
+        {
+            cur->next = l2;
+        }
+
+        return head->next;
+    }
+};
+
+
+// Approach 1
 class Solution {
 public:
     ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
