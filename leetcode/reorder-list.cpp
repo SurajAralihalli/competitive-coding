@@ -1,7 +1,7 @@
 // Author: Suraj Aralihalli
 // Url: https://leetcode.com/problems/reorder-list/
 // Date: 21st November, 2021
-// Tags: link-list, linklist
+// Tags: linked-list, linklist
 
 /**
  * Definition for singly-linked list.
