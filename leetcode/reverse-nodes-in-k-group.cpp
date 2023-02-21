@@ -1,5 +1,5 @@
 // Author: Suraj Aralihalli
-// Url: https://leetcode.com/problems/copy-list-with-random-pointer/
+// Url: https://leetcode.com/problems/reverse-nodes-in-k-group/
 // Date: 2nd Sept, 2022
 // Tags: linked-list, pointer
 
