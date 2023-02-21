@@ -1,6 +1,7 @@
 // Author: Suraj Aralihalli
 // Url: https://leetcode.com/problems/jump-game/
 // Date: 20th May, 2021
+// Tags: greedy
 
 // Approach 1
 class Solution {
