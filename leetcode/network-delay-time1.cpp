@@ -1,7 +1,7 @@
 // Author: Suraj Aralihalli
 // Url: https://leetcode.com/problems/network-delay-time/
 // Date: 28th August, 2021
-// Tags: dp, dijkstra
+// Tags: dp, dijkstra, graph
 
 
 class Solution {
