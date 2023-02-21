@@ -1,7 +1,7 @@
 // Author: Suraj Aralihalli
 // Url: https://leetcode.com/problems/graph-valid-tree/
 // Date: 22nd Oct, 2022
-// Tags: graph, dfs, topo-sort, toposprt
+// Tags: graph, dfs, topo-sort, toposort
 
 class Solution {
 public:
