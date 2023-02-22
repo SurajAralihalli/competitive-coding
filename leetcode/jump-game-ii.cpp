@@ -3,6 +3,32 @@
 // Date: 20th May, 2021
 // Tags: greedy
 
+//Approach 3
+class Solution {
+public:
+    int jump(vector<int>& nums) {
+        int n = nums.size();
+        // if(n==1) return 0;
+        int curFar = 0; // farthest you could go making a jump from some i such that i < curEnd
+        int curEnd = 0; // farthest you could go without making a new jump
+        int jumps=0; // first one is not a jump
+        for(int i=0;i<n-1;i++) {
+
+            if(i<curEnd) {
+                curFar = max(curFar, i + nums[i]);
+            }
+            else {
+                jumps++;
+                curFar = max(curFar, i + nums[i]);
+                curEnd = curFar;
+                
+            }
+        }
+
+        return jumps;
+    }
+};
+
 // Approach 1
 class Solution {
 public:
