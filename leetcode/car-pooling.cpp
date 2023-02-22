@@ -7,9 +7,7 @@ class Solution {
 public:
     bool carPooling(vector<vector<int>>& trips, int capacity) {
         sort(trips.begin(), trips.end(), sortAsc);
-        // for(auto i:trips) {
-        //     cout << i[0] << " " << i[1] << " " << i[2] <<endl;
-        // }
+
         priority_queue< pair<int, vector<int>> , vector<pair<int, vector<int>>>, greater<pair<int, vector<int>>>> pq;
 
         int cap = capacity;
@@ -20,7 +18,9 @@ public:
         else {
             return false;
         }
+	    
         int n = trips.size();
+	    
         for(int i=1; i < n; i++ ) {
             auto new_trip = trips[i];
             
@@ -30,12 +30,10 @@ public:
                 pq.pop() ;
             }
             
-			//step - 2
             pq.push({new_trip[2], new_trip});
 
             cap-=new_trip[0] ;
 			
-			//step - 3
             if(cap<0){
                 return false ;
             }
