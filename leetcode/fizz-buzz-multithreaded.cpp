@@ -20,58 +20,89 @@ public:
 
     // printFizz() outputs "fizz".
     void fizz(function<void()> printFizz) {
-        pthread_mutex_lock(&lock);
-        while(i <= n) {
+        
+        while(true) {
+            pthread_mutex_lock(&lock);
             while(i <= n && !(i%3==0 && i%5!=0)) {
                 pthread_cond_wait(&cv, &lock);
             }
-            if(i <= n) printFizz();
+            if(i <= n) {
+                printFizz();
+            }
+            else {
+                pthread_mutex_unlock(&lock);
+                return;
+            }
             i++;
             pthread_cond_broadcast(&cv);
+            pthread_mutex_unlock(&lock);
         }
-        pthread_mutex_unlock(&lock);
+        
         
     }
 
     // printBuzz() outputs "buzz".
     void buzz(function<void()> printBuzz) {
-        pthread_mutex_lock(&lock);
-        while(i <= n) {
+        
+        while(true) {
+            pthread_mutex_lock(&lock);
             while(i <= n && !(i%5==0 && i%3!=0)) {
                 pthread_cond_wait(&cv, &lock);
             }
-            if(i <= n) printBuzz();
+            if(i <= n) {
+                printBuzz();
+            }
+            else {
+                pthread_mutex_unlock(&lock);
+                return;
+            }
             i++;
             pthread_cond_broadcast(&cv);
+            pthread_mutex_unlock(&lock);
         }
-        pthread_mutex_unlock(&lock);
+        
     }
 
     // printFizzBuzz() outputs "fizzbuzz".
 	void fizzbuzz(function<void()> printFizzBuzz) {
-        pthread_mutex_lock(&lock);
-        while(i <= n) {
+       
+        while(true) {
+            pthread_mutex_lock(&lock);
             while(i <= n && !(i%5==0 && i%3==0)) {
                 pthread_cond_wait(&cv, &lock);
             }
-            if(i <= n) printFizzBuzz();
+            if(i <= n) {
+                printFizzBuzz();
+            }
+            else {
+                pthread_mutex_unlock(&lock);
+                return;
+            }
             i++;
             pthread_cond_broadcast(&cv);
+            pthread_mutex_unlock(&lock);
         }
-        pthread_mutex_unlock(&lock);
+        
     }
 
     // printNumber(x) outputs "x", where x is an integer.
     void number(function<void(int)> printNumber) {
-        pthread_mutex_lock(&lock);
-        while(i <= n) {
+        
+        while(true) {
+            pthread_mutex_lock(&lock);
             while(i <= n && !(i%5!=0 && i%3!=0)) {
                 pthread_cond_wait(&cv, &lock);
             }
-            if(i <= n) printNumber(i);
+            if(i <= n) {
+                printNumber(i);
+            }
+            else {
+                pthread_mutex_unlock(&lock);
+                return;
+            }
             i++;
             pthread_cond_broadcast(&cv);
+            pthread_mutex_unlock(&lock);
         }
-        pthread_mutex_unlock(&lock);
     }
 };
