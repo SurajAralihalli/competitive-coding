@@ -1,7 +1,7 @@
 // Author: Suraj Aralihalli
 // Url: https://leetcode.com/problems/remove-nth-node-from-end-of-list/
 // Date: 14th November, 2021
-// Tags: linkedlist
+// Tags: linked-list
 
 /**
  * Definition for singly-linked list.
