@@ -1,7 +1,7 @@
 // Author: Suraj Aralihalli
 // Url: https://leetcode.com/problems/add-two-numbers/
 // Date: 8th May, 2021
-// Tags: linked lists
+// Tags: linked-list
 
 /**
  * Definition for singly-linked list.
