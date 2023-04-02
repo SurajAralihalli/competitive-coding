@@ -1,7 +1,7 @@
 // Author: Suraj Aralihalli
 // Url: https://leetcode.com/problems/find-median-from-data-stream/
 // Date: 7th October, 2021
-// Tags: heaps, priority-queue
+// Tags: heap, priority-queue
 
 #include <bits/stdc++.h>
 // Add any extra import statements you may need here
