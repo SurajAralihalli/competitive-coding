@@ -1,7 +1,7 @@
 // Author: Suraj Aralihalli
 // Url: https://leetcode.com/problems/merge-k-sorted-lists/
 // Date: 14th November, 2021
-// Tags: linkedlist
+// Tags: linked-list
 
 /**
  
