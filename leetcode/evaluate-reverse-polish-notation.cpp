@@ -3,7 +3,58 @@
 // Date: 25th September, 2022
 // Tags: stack
 
+//Approach 2
+class Solution {
+public:
+    int evalRPN(vector<string>& tokens) {
+        stack<int> numbers;
 
+        for(string i: tokens){
+            if(i == "-") {
+                int r = numbers.top();
+                numbers.pop();
+                int l = numbers.top();
+                numbers.pop();
+
+                numbers.push((l - r));
+            }
+            else if(i == "+") {
+                int r = numbers.top();
+                numbers.pop();
+                int l = numbers.top();
+                numbers.pop();
+
+                numbers.push((l + r));
+            }
+            else if(i == "*") {
+                int r = numbers.top();
+                numbers.pop();
+                int l = numbers.top();
+                numbers.pop();
+
+                numbers.push((l * r));
+            }
+            else if (i == "/") {
+                int r = numbers.top();
+                numbers.pop();
+                int l = numbers.top();
+                numbers.pop();
+
+                numbers.push((l / r));
+            }
+            else {
+                numbers.push(stoi(i));
+            }
+        }
+
+        int l = numbers.top();
+        return l;
+
+    }
+};
+
+
+// Approach 1
 class Solution {
 public:
     
