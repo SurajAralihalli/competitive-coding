@@ -4,7 +4,7 @@
 // Date: 6th September, 2021
 // Tags: dp
 
-// Approach 1
+// Approach 2
 class Solution {
 public:
     bool canPartition(vector<int>& nums) {
@@ -35,7 +35,7 @@ public:
     }
 };
 
-// Approach 2
+// Approach 1
 class Solution {
 public:
     vector<vector<int>> mat;
