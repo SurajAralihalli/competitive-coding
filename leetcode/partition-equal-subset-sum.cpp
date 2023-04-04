@@ -4,7 +4,38 @@
 // Date: 6th September, 2021
 // Tags: dp
 
+// Approach 1
+class Solution {
+public:
+    bool canPartition(vector<int>& nums) {
+        vector<vector<bool>> mat;
+        int n = nums.size();
+        int sum = accumulate(nums.begin(), nums.end(),0);
+        if(sum%2) return false;
+        sum/=2;
+        mat.assign(n+1, vector<bool> (sum+1, false));
+        for(int i=0;i<n;i++) {
+            mat[i][0] = true;
+        }
 
+        for(int i=1; i<=n; i++) {
+            for(int j=1;j<=sum;j++) {
+                if(nums[i-1]<=j) {
+                    mat[i][j] = mat[i-1][j] || mat[i-1][j - nums[i-1]];
+                }
+                else {
+                    mat[i][j] = mat[i-1][j];
+                }
+            }
+        }
+
+        return mat[n][sum];
+
+
+    }
+};
+
+// Approach 2
 class Solution {
 public:
     vector<vector<int>> mat;
