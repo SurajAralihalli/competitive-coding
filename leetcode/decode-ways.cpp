@@ -38,10 +38,10 @@ public:
         }
         else if(s[i] - '0' > 0)
         {
-            ans = decode(s,i+2,n);
+            ans = decode(s,i+1,n);
             if((stoi(s.substr(i,2)))<27)
             {
-                ans += decode(s,i+1,n);
+                ans += decode(s,i+2,n);
             }
         }
         else
