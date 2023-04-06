@@ -161,9 +161,6 @@ string applyRules(vector<string> words) {
   for(int i=0;i<id;i++) {
     string word = masterMap[i].first;
     char_before cb =  masterMap[i].second.first;
-    // char_after ca = masterMap[i].second.second;
-
-    // cout << "word: " << word << endl;
 
     if(cb == com_before) {
       finalStr += ",";
@@ -175,13 +172,6 @@ string applyRules(vector<string> words) {
     finalStr += word;
 
     finalStr += " ";
-
-    // if(ca == com_after) {
-    //   finalStr += ",";
-    // }
-    // if(ca == period_after) {
-    //   finalStr += ".";
-    // }
   }
 
   // only for last one do separately
