@@ -16,6 +16,25 @@
  */
 
 
+// Approach 3
+class Solution {
+public:
+    bool isValidBST(TreeNode* root) {
+        bool isValid = true;
+        long prev = LONG_MIN;
+        isValidBSTHelp(root, isValid, prev);
+        return isValid;
+
+    }
+    void isValidBSTHelp(TreeNode* root, bool &isValid, long& prev) {
+        if(root!=NULL) {
+            isValidBSTHelp(root->left, isValid, prev);
+            isValid = isValid && (root->val > prev);
+            prev = root->val;
+            isValidBSTHelp(root->right, isValid, prev);
+        }
+    }
+};
 
 
 // Approach 1
