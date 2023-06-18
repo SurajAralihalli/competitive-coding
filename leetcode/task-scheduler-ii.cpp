@@ -1,7 +1,7 @@
 // Author: Suraj Aralihalli
 // Url: https://leetcode.com/problems/task-scheduler-ii/description/
 // Date: 21st February, 2022
-// Tags: queue
+// Tags: queue, design
 
 class Solution {
 public:
