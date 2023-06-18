@@ -1,7 +1,7 @@
 // Author: Suraj Aralihalli
 // Url: https://leetcode.com/problems/min-stack/
 // Date: 25th September, 2022
-// Tags: stack
+// Tags: stack, design
 
 class MinStack {
 public:
