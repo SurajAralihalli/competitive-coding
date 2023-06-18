@@ -1,7 +1,7 @@
 // Author: Suraj Aralihalli
 // Url: https://leetcode.com/problems/task-scheduler/
 // Date: 8th Oct, 2022
-// Tags: heap, priority-queue, intervals
+// Tags: heap, priority-queue, intervals, design
 
 class Solution {
 public:
