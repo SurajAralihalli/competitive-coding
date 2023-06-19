@@ -1,8 +1,7 @@
-
 // Author: Suraj Aralihalli
 // Url: https://leetcode.com/problems/spiral-matrix/
 // Date: 2nd September, 2022
-// Tags: matrix, spiral
+// Tags: matrix, spiral, math
 
 class Solution {
 public:
